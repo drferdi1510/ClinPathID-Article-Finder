@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0d3348">
+  <meta name="description" content="Solusi mencari sumber ilmiah yang simpel, valid, dan praktis">
+  <title>ClinPathID Article Finder</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="header-logo-area">
+        <img src="icons/logo-header.png" alt="ClinPathID Logo" class="header-logo-img">
+        <div class="header-text">
+          <h1 class="app-title">ClinPathID Article Finder</h1>
+          <p class="app-tagline">Solusi mencari sumber ilmiah yang simpel, valid, dan praktis</p>
+        </div>
+      </div>
+      <div class="header-badge">Scimago 2025</div>
+    </div>
+    <p class="app-description">Cari artikel ilmiah via PubMed &bull; Preview halaman pertama &bull; Simpan referensi</p>
+  </header>
+
+  <div class="app">
+    <nav class="tabs">
+      <button class="tab active" data-tab="journals">Daftar Jurnal</button>
+      <button class="tab" data-tab="articles">Cari Artikel</button>
+      <button class="tab" data-tab="saved">Tersimpan <span id="saved-count"></span></button>
+      <button class="tab" data-tab="about">Tentang</button>
+    </nav>
+
+    <!-- TAB: JURNAL -->
+    <section id="tab-journals" class="tab-content active">
+      <div class="filter-bar">
+        <select id="f-topic">
+          <option value="">Semua Topik</option>
+          <option value="Hematologi">Hematologi</option>
+          <option value="Kimia Klinik">Kimia Klinik</option>
+          <option value="Imunologi">Imunologi</option>
+          <option value="Penyakit Infeksi">Penyakit Infeksi</option>
+        </select>
+        <select id="f-q">
+          <option value="">Semua Kuartil</option>
+          <option value="Q1">Q1</option>
+          <option value="Q2">Q2</option>
+          <option value="Q3">Q3</option>
+          <option value="Q4">Q4</option>
+        </select>
+        <select id="f-apc">
+          <option value="">Semua APC</option>
+          <option value="free">Free APC</option>
+          <option value="paid">Berbayar</option>
+        </select>
+        <select id="f-oa">
+          <option value="">Semua Akses</option>
+          <option value="yes">Open Access</option>
+        </select>
+        <input id="f-search" placeholder="Cari nama jurnal...">
+        <button id="export-btn" class="btn-outline">Export CSV</button>
+      </div>
+      <div id="journal-count" class="result-count"></div>
+      <div id="journal-grid" class="journal-grid"></div>
+    </section>
+
+    <!-- TAB: ARTIKEL -->
+    <section id="tab-articles" class="tab-content">
+      <div class="search-bar">
+        <input id="q-input" placeholder="Contoh: albumin, sepsis biomarker, MDW ICU..." type="search">
+        <select id="q-topic">
+          <option value="">Semua Topik</option>
+          <option value="hematology">Hematologi</option>
+          <option value="clinical chemistry laboratory medicine">Kimia Klinik</option>
+          <option value="immunology">Imunologi</option>
+          <option value="infectious disease">Penyakit Infeksi</option>
+        </select>
+        <select id="q-year">
+          <option value="">Semua Tahun</option>
+          <option value="5">5 tahun terakhir</option>
+          <option value="3">3 tahun terakhir</option>
+          <option value="1">1 tahun terakhir</option>
+        </select>
+        <button id="search-btn" class="btn-primary">Cari</button>
+      </div>
+      <div id="article-results"></div>
+    </section>
+
+    <!-- TAB: TERSIMPAN -->
+    <section id="tab-saved" class="tab-content">
+      <div id="saved-list"></div>
+    </section>
+
+    <!-- TAB: TENTANG -->
+    <section id="tab-about" class="tab-content">
+      <div class="about-card">
+        <img src="icons/logo-header.png" alt="ClinPathID Logo" class="about-logo-img">
+        <h2 class="about-app-name">ClinPathID Article Finder</h2>
+        <p class="about-version-pill">v.0.1.0</p>
+        <div class="about-divider"></div>
+        <p class="about-body">
+          Hadir sebagai sebuah inisiatif mandiri, aplikasi ini bertujuan menyederhanakan pencarian literatur ilmiah bagi para sejawat di bidang Patologi Klinik. Fokus utama adalah efisiensi akses menuju jurnal terindeks Scopus.
+        </p>
+        <p class="about-body">
+          Mengingat aplikasi ini akan terus dikembangkan, masukan dari Anda sangatlah kami harapkan untuk menyempurnakan fitur-fitur di masa mendatang.
+        </p>
+        <p class="about-body">Sampaikan aspirasi Anda melalui tautan berikut:</p>
+        <a class="about-cta-btn" href="https://forms.gle/3H2jrL8xCxkt4pBK7" target="_blank" rel="noopener">
+          Berikan Masukan &rarr;
+        </a>
+        <div class="about-divider"></div>
+        <div class="about-meta-grid">
+          <div class="about-meta-item">
+            <span class="about-meta-label">Pengembang</span>
+            <span class="about-meta-val">dr. WIY</span>
+          </div>
+          <div class="about-meta-item">
+            <span class="about-meta-label">Data Jurnal</span>
+            <span class="about-meta-val">Scimago 2025</span>
+          </div>
+          <div class="about-meta-item">
+            <span class="about-meta-label">Sumber Artikel</span>
+            <span class="about-meta-val">PubMed / NCBI</span>
+          </div>
+          <div class="about-meta-item">
+            <span class="about-meta-label">Versi</span>
+            <span class="about-meta-val">0.1.0</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- MODAL PREVIEW -->
+  <div id="modal-overlay" class="modal-overlay hidden">
+    <div class="modal">
+      <div class="modal-topbar">
+        <div class="modal-topbar-left">
+          <img src="icons/icon-192.png" alt="" class="modal-logo">
+          <span>Preview halaman pertama</span>
+        </div>
+        <button id="modal-close" class="modal-close" aria-label="Tutup">&times;</button>
+      </div>
+      <div id="paper-preview" class="paper-preview"></div>
+      <div id="modal-actions" class="modal-actions"></div>
+    </div>
+  </div>
+
+  <footer class="app-footer">
+    <div class="footer-logo-row">
+      <img src="icons/icon-192.png" alt="ClinPathID" class="footer-logo">
+      <span class="footer-brand">ClinPathID</span>
+    </div>
+    <p class="footer-main">Artikel diambil dari database PubMed/NCBI. Kuartil jurnal berdasarkan Scimago 2025. Preview merepresentasikan elemen halaman pertama paper.</p>
+    <p class="footer-credit">v.0.1.0 &mdash; Dikembangkan oleh dr. WIY</p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="js/journals.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
